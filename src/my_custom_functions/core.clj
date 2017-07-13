@@ -134,7 +134,24 @@
     (apply f (into in b))))
 
 ;; COMPLEMENT FUNCTION
+
+
 (defn my-complement [f]
   (fn [& b]
     (not (apply f b))))
 ;; SORT-BY FUNCTION
+
+(defn convert-input [in out]
+  (if (empty? in)
+    out
+    (recur (rest in)
+           (conj out (vector (first in) (count (first in)))))))
+
+(defn my-remove-by [a in]
+  (if (empty? in)
+    a
+    (if (= a (first in))
+      (rest in)
+      (conj (first in) (my-remove-by a (rest in))))))
+
+(defn my-min-by [in])
