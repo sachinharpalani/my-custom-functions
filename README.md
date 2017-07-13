@@ -1,4 +1,5 @@
 # my-custom-functions
+<<<<<<< HEAD
 
 FIXME: description
 
@@ -34,3 +35,6 @@ Copyright © 2017 FIXME
 
 Distributed under the Eclipse Public License either version 1.0 or (at
 your option) any later version.
+=======
+Implementation of fundamental functions on own
+>>>>>>> 340bc849d8719c144e8d79180d49b923d4309889
