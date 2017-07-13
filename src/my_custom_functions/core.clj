@@ -127,7 +127,14 @@
 (defn my-concat [& a]
   (helper-concat a []))
 
+;; PARTIAL FUNCTION
+
+(defn my-partial [f & in]
+  (fn [& b]
+    (apply f (into in b))))
+
 ;; COMPLEMENT FUNCTION
-
-
+(defn my-complement [f]
+  (fn [& b]
+    (not (apply f b))))
 ;; SORT-BY FUNCTION
