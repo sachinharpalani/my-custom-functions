@@ -176,3 +176,18 @@
   (if (empty? in)
     '()
     (helper-sort-by (convert-input f in []) [])))
+
+
+;; QUESTION 1
+;; i/p: (fn 2 [1 2 3])
+;; o/p: [1 1 2 2 3 3]
+
+(defn helper-f1 [val in out cnt]
+  (if (empty? in)
+    out
+    (if (= 0 val)
+      (recur cnt (rest in) out val)
+      (recur (dec val) in (conj out (first in)) (inc cnt)))))
+
+(defn f1 [val in]
+  (helper-f1 val in [] 0))
