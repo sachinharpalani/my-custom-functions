@@ -161,7 +161,7 @@
   (if (empty? in)
     '()
     (reduce (fn [a b]
-              (if (<  (second a) (second b))
+              (if (<=  (second a) (second b))
                 a
                 b))
             in)))
