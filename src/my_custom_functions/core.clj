@@ -30,11 +30,13 @@
 ;; TAKE FUNCTION
 
 (defn helper-take [val in out]
-  (if (> val (count in))
-    (reverse (into '() in))
-    (if (= (count out) val)
-      (reverse (into '() out))
-      (recur val (rest in) (conj out (first in))))))
+  (if (< val 0)
+    '()
+    (if (> val (count in))
+      (reverse (into '() in))
+      (if (= (count out) val)
+        (reverse (into '() out))
+        (recur val (rest in) (conj out (first in)))))))
 
 (defn my-take [val in]
   (helper-take val in []))
@@ -154,7 +156,7 @@
     (if (= a (first in))
       (rest in)
       (cons (first in) (my-remove-by a (rest in))))))
-
+;; min using reduce doesnt return alphabet result if count is same
 (defn my-min-by [in]
   (if (empty? in)
     '()
