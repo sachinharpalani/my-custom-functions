@@ -141,17 +141,36 @@
     (not (apply f b))))
 ;; SORT-BY FUNCTION
 
-(defn convert-input [in out]
+(defn convert-input [f in out]
   (if (empty? in)
     out
-    (recur (rest in)
-           (conj out (vector (first in) (count (first in)))))))
+    (recur f
+           (rest in)
+           (conj out (vector (first in) (f (first in)))))))
 
 (defn my-remove-by [a in]
   (if (empty? in)
     a
     (if (= a (first in))
       (rest in)
-      (conj (first in) (my-remove-by a (rest in))))))
+      (cons (first in) (my-remove-by a (rest in))))))
 
-(defn my-min-by [in])
+(defn my-min-by [in]
+  (if (empty? in)
+    '()
+    (reduce (fn [a b]
+              (if (<  (second a) (second b))
+                a
+                b))
+            in)))
+
+(defn helper-sort-by [in out]
+  (if (empty? in)
+    out
+    (recur (my-remove-by (my-min-by in) in)
+           (conj out (first (my-min-by in))))))
+
+(defn my-sort-by [f in]
+  (if (empty? in)
+    '()
+    (helper-sort-by (convert-input f in []) [])))
