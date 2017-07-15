@@ -75,3 +75,10 @@
 (expect/expect '(1 2) (my-concat [1 2] []))
 (expect/expect '(1 2 3 4 6 5) (my-concat '(1 2) [3 4] #{5 6}))
 (expect/expect '(\s \a \c \h \i \n) (my-concat "sac" "hin"))
+
+(expect/expect :a (expect/in [:a :b]))
+
+;;COMP FUNCTION
+
+(expect/expect "6" ((my-comp str +) 1 2 3))
+(expect/expect "7" ((my-comp str inc +) 1 2 3))

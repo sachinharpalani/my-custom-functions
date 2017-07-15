@@ -191,3 +191,17 @@
 
 (defn f1 [val in]
   (helper-f1 val in [] 0))
+
+
+;;COMP FUNCTION
+
+(defn helper-my-comp [func inp]
+  (if (empty? func)
+    inp
+    (recur (rest func) ((first func) inp))))
+
+(defn my-comp [& f]
+  (let [revf (reverse f)]
+    (fn [& in]
+      (helper-my-comp (rest revf)
+                      (apply (first revf) in)))))
